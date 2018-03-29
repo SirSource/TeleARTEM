@@ -1,16 +1,12 @@
-create table Users(userID serial primary key,user_first_name varchar(20), user_last_name varchar(30),user_email varchar(30), user_phone varchar(15);
 
-create table UserPassword(userPassID serial primary key, userID references Users(userID));
+create table Users(userID serial primary key, name varchar(20), email varchar(30), username varchar(20), password varchar(20), phone varchar(20));
 
-create table Ulike(uLikeID serial primary key, userID references Users(userID));
+create table Chats(chatID serial primary key, admin integer references Users(userID), name varchar(20));
 
-create table Contacts(contact_ID serial primary key, userID references Users(userID), contact_first varchar(20), contact_last varchar(20), contact_phone varchar(20), contact_email varchar(20));
+create table Messages(messageID serial primary key, poster integer references Users(userID), chat integer references Chats(chatID), message varchar(120), timeStamp date, replyID integer references Messages(messageID));
 
-create table message(m_id serial primary key, userID references Users(userID), m_thread integer, );
+create table Likes(likeID serial primary key, likeValue integer, message integer references Messages(messageID), userID integer references Users(userID));
 
-create table Conversation(conv_ID serial primary key, creatorID references Users(userID));
+create table Contacts(contactID serial primary key, holder integer references Users(userID), friend integer references Users(userID));
 
-create table UsersInConversation(user_convID serial primary key, conv_ID references Conversation(conv_ID), userID varchar(20));
-
-
-
+create table Members(memberID serial primary key, chat integer references Chats(chatID), userID integer references Users(userID));
