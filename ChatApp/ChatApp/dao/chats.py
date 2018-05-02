@@ -1,27 +1,24 @@
+import psycopg2
 class ChatDAO:
     def __init__(self):
-        P1 = [0, 67, 'ICOM4035 Chat']
-        P2 = [1, 53, 'ICOM5016 Chat']
-        P3 = [2, 97, 'ICOM5009 Chat']
-        P4 = [3, 97, 'ICOM4036 Chat']
-
-        self.data = []
-        self.data.append(P1)
-        self.data.append(P2)
-        self.data.append(P3)
-        self.data.append(P4)
+        conn_string = "host='localhost' dbname='chatapp' user='postgres' password='postgres'"
+        self.conn = psycopg2.connect(conn_string)
 
     def getAllChats(self):
-        return self.data
-
-    def getChatById(self, id):
-        for r in self.data:
-            if int(id) == r[0]:
-                return r
-
+        cursor = self.conn.cursor()
+        cursor.execute("select * from chats;")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
     def getAdminByChatId(self, id):
-        adminInChats = []
-        for i in self.data:
-            if i[0] == int(id):
-                adminInChats.append(i)
-        return adminInChats
+        cursor = self.conn.cursor()
+        cursor.execute("select chatid, username, email from chats inner join users on chats.admin=users.userid where chatid = %s;", id)
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+    def getChatById(self, id):
+        cursor = self.conn.cursor()
+        cursor.execute("select * from chats where chatid=%s;", id)
+        return cursor.fetchone()

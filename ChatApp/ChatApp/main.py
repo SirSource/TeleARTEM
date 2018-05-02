@@ -5,23 +5,18 @@ from handler.contacts import ContactHandler
 from handler.members import MemberHandler
 from handler.messages import MessagesHandler
 from handler.likes import LikesHandler
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 
-
-@app.route('/')
+@app.route('/ChatApp/')
 def home():
     return "Hello World"
 
-
-@app.route('/login')
-def login():
-    return "Login here"
-
-
-@app.route('/register')
-def registerUser():
-    return "Register here"
+@app.route('/ChatApp/login/<username>/<password>')
+def login(username, password):
+    return UserHandler().login(username, password)
 
 
 # Chats
@@ -44,19 +39,19 @@ def removeChat(name):
     return ChatHandler().removeChat(name)
 
 
-@app.route('/ChatApp/chats/postmessage/<name>/<message>')
-def postMessage(name, message):
-    return ChatHandler().postMessage(name, message)
+@app.route('/ChatApp/chats/<chat>/messages/post/<message>')
+def postMessage(chat, message):
+    return ChatHandler().postMessage(chat, message)
 
 
-@app.route('/ChatApp/chats/<chatId>/addcontact/<name>')
-def addContactToChat(chatId, name):
-    return ChatHandler().addContactToChat(chatId, name)
+@app.route('/ChatApp/chats/<chat>/members/add/<id>')
+def addContactToChat(chat, id):
+    return ChatHandler().addContactToChat(chat, id)
 
 
-@app.route('/ChatApp/chats/<chatId>/removecontact/<name>')
-def removeContactFromChat(chatId, name):
-    return ChatHandler().removeContactFromChat(chatId, name)
+@app.route('/ChatApp/chats/<chat>/members/remove/<id>')
+def removeContactFromChat(chat, id):
+    return ChatHandler().removeContactFromChat(chat, id)
 
 
 @app.route('/ChatApp/chats/<chatId>')
@@ -74,15 +69,19 @@ def viewMessages(chatId):
     return ChatHandler().getMessages(chatId)
 
 
-@app.route('/ChatApp/chats/<chatId>/<messageId>/<like>')
+@app.route('/ChatApp/chats/<chatId>/members')
+def viewMembers(chatId):
+    return MemberHandler().getMembersByChat(chatId)
+
+
+@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/like/<like>')
 def likeMessage(chatId, messageId, like):
     return ChatHandler().likeMessage(chatId, messageId, like)
 
 
-@app.route('/ChatApp/chats/<chatId>/<messageId>/reply/<message>')
+@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/reply/<message>')
 def replyToMessage(chatId, messageId, message):
     return ChatHandler().replyToMessage(chatId, messageId, message)
-
 
 # Users
 @app.route('/ChatApp/users')
@@ -93,18 +92,21 @@ def users():
         handler = UserHandler()
         return handler.getAllUsers()
 
+@app.route('/ChatApp/users/active')
+def usersActive():
+        return UserHandler().activeUsers()
 
-@app.route('/ChatApp/users/register')
-def register():
-    return UserHandler().registerUser()
 
+@app.route('/ChatApp/users/register/<name>/<username>/<email>/<password>/<phone>')
+def register(name, username, email, password, phone):
+    return UserHandler().registerUser(name, username, email, password, phone)
 
-@app.route('/ChatApp/users/<int:userId>')
+@app.route('/ChatApp/users/<userId>')
 def getUserById(userId):
     return UserHandler().getUserById(userId)
 
 
-@app.route('/ChatApp/users/<username>')
+@app.route('/ChatApp/users/name/<username>')
 def getUserByUsername(username):
     return UserHandler().searchUsers(username)
 
@@ -119,9 +121,9 @@ def contacts():
         return handler.getAllContacts()
 
 
-@app.route('/ChatApp/contacts/add/<contact>')
-def addContact(contact):
-    return ContactHandler().addContactToUser(contact)
+@app.route('/ChatApp/contacts/<user>/add/<contact>')
+def addContact(user, contact):
+    return ContactHandler().addContactToUser(user,contact)
 
 
 @app.route('/ChatApp/contacts/<userId>/remove/<contact>')
@@ -129,7 +131,7 @@ def removeContact(userId, contact):
     return ContactHandler().removeContactFromUser(userId, contact)
 
 
-@app.route('/ChatApp/contacts/<userId>')
+@app.route('/ChatApp/contacts/user/<userId>')
 def getContactsById(userId):
     return ContactHandler().getContactsById(userId)
 
@@ -149,6 +151,9 @@ def getMembersByChatId(chatId):
     return MemberHandler().getMembersByChatId(chatId)
 
 
+@app.route('/ChatApp/messagesAllChat')
+def messagesDB():
+        return MessagesHandler().messagesChatReady()
 # Messages
 @app.route('/ChatApp/messages')
 def messages():
@@ -157,6 +162,10 @@ def messages():
     else:
         handler = MessagesHandler()
         return handler.getAllMessages()
+
+@app.route('/ChatApp/messages/<id>/like/<like>/users')
+def getUsersByMessageReactions(id, like):
+    return MessagesHandler().getUserReactionsByMessage(id, like)
 
 
 @app.route('/ChatApp/messages/chat/<chatId>')
@@ -168,21 +177,36 @@ def getMessagesByChatId(chatId):
 def getMessagesByUserId(userId):
     return MessagesHandler().getMessagesByChatId(userId)
 
+@app.route('/ChatApp/messages/<id>/likecount/<like>')
+def getLikesOfMessage(id, like):
+    return MessagesHandler().getLikesOfMessage(id, like)
+
 
 # Likes
-@app.route('/ChatApp/likes')
-def likes():
+@app.route('/ChatApp/likes/<like>')
+def likes(like):
     if request.args:
         return LikesHandler().searchLikes(request.args)
     else:
         handler = LikesHandler()
-        return handler.getAllLikes()
+        return handler.getAllLikes(like)
 
 
-@app.route('/ChatApp/likes/message/<messageId>')
+@app.route('/ChatApp/likes/users/message/<messageId>')
 def getLikesByUserId(messageId):
-    return LikesHandler().getLikesByMessageId(messageId)
+    return LikesHandler().getUserReactionsByMessageId(messageId)
 
+@app.route('/ChatApp/messages/hashtags/<date>')
+def getHashtagAggregatesByDate(date):
+    return MessagesHandler().getHashtagAggregates(date)
+
+@app.route('/ChatApp/messages/replies/<date>')
+def getRepliesByDate(date):
+    return MessagesHandler().getRepliesPerDate(date)
+
+@app.route('/ChatApp/messages/date/<date>')
+def getMessagesPerDate(date):
+    return MessagesHandler().getMessagesPerDate(date)
 
 if __name__ == '__main__':
     app.run()
