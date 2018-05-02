@@ -6,9 +6,9 @@ class ContactHandler:
 
     def mapToDictionary(self, row):
         result = {}
-        result['contactId'] = row[0]
-        result['holder'] = row[1]
-        result['friend'] = row[2]
+        result['name'] = row[0]
+        result['email'] = row[1]
+        result['username'] = row[2]
         return result
 
     def getAllContacts(self):
@@ -28,10 +28,22 @@ class ContactHandler:
         else:
             for r in result:
                 mappedResult.append(self.mapToDictionary(r))
-            return jsonify(Contacts=mappedResult)
+            return mappedResult
 
-    def addContactToUser(self, contact):
-        return jsonify(ContactAdded=contact + " has been added to your contact list")
+    def addContactToUser(self, user, contact):
+        dao = ContactDAO()
+        contact = dao.getContact(contact)
+        user = dao.getContact(user)
+        if not contact:
+            return jsonify(Error="THIS ID DOES NOT EXIST"), 404
+        else:
+            return jsonify(Contacts="User: "+contact[0]+" has been added to user "+user[0]+" contact list")
 
-    def removeContactFromUser(self, userId, contact):
-        return jsonify(ContactAddedToChat="User " + contact + " has been removed from user " + userId + " contact list")
+    def removeContactFromUser(self, user, contact):
+        dao = ContactDAO()
+        contact = dao.getContact(contact)
+        user = dao.getContact(user)
+        if not contact:
+            return jsonify(Error="THIS ID DOES NOT EXIST"), 404
+        else:
+            return jsonify(Contacts="User: " + contact[0] + " has been removed from user " + user[0] + " contact list")

@@ -1,27 +1,16 @@
+import psycopg2
 class MemberDAO:
     def __init__(self):
-        P1 = [0, 1, 1]
-        P2 = [1, 1, 2]
-        P3 = [2, 1, 3]
-        P4 = [3, 0, 2]
-        P5 = [4, 0, 3]
-        P6 = [5, 2, 3]
-
-        self.data = []
-        self.data.append(P1)
-        self.data.append(P2)
-        self.data.append(P3)
-        self.data.append(P4)
-        self.data.append(P5)
-        self.data.append(P6)
+        conn_string = "host='localhost' dbname='chatapp' user='postgres' password='postgres'"
+        self.conn = psycopg2.connect(conn_string)
 
     def getAllMembers(self):
         return self.data
 
     def getMembersById(self, id):
+        cursor = self.conn.cursor()
+        cursor.execute("select username, email from users natural inner join members where chat = %s;", id)
         result = []
-        allMembers = self.getAllMembers()
-        for r in allMembers:
-            if r[1] == int(id):
-                result.append(r)
+        for row in cursor:
+            result.append(row)
         return result

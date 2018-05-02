@@ -6,9 +6,8 @@ class MemberHandler:
 
     def mapToDictionary(self, row):
         result = {}
-        result['memberId'] = row[0]
-        result['chat'] = row[1]
-        result['userID'] = row[2]
+        result['username'] = row[0]
+        result['email'] = row[1]
         return result
 
     def getAllMembers(self):
@@ -19,7 +18,7 @@ class MemberHandler:
             mappedResult.append(self.mapToDictionary(r))
         return jsonify(Members=mappedResult)
 
-    def getMembersByChatId(self, id):
+    def getMembersByChat(self, id):
         dao = MemberDAO()
         result = dao.getMembersById(id)
         mappedResult = []

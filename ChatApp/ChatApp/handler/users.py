@@ -3,6 +3,13 @@ from dao.user import UserDAO
 
 
 class UserHandler:
+    def getAllUsersDB(self):
+        data = UserDAO().getAllUsersDB()
+        result = []
+        for i in data:
+            result.append(self.mapToDictionary(i))
+
+        return jsonify(Messages=result)
 
     def mapToDictionary(self, row):
         result = {}
@@ -27,6 +34,7 @@ class UserHandler:
         if not result:
             return jsonify(Error="USER NOT FOUND"), 404
         else:
+            print(result)
             mapped = self.mapToDictionary(result)
             return jsonify(User=mapped)
 
@@ -38,5 +46,12 @@ class UserHandler:
         else:
             return jsonify(User=result)
 
-    def registerUser(self):
-        return jsonify(Success="USER HAS BEEN REGISTERED")
+    def registerUser(self, name, username, email, password, phone):
+        return jsonify(Register="User with name: '" + name + "',username: '"+username+"', email: '"+email+"', password: '"+password+"' and phone: '"+phone+"' has been registered")
+
+    def login(self,username, password):
+        return jsonify(Login="User with username: '" + username + "' has succesfully logged in")
+
+    def activeUsers(self):
+        return jsonify(Login="Number of active users is: "+str(UserDAO().activeUsers()[0]))
+
