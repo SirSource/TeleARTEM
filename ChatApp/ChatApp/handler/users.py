@@ -47,6 +47,10 @@ class UserHandler:
             return jsonify(User=result)
 
     def registerUser(self, name, username, email, password, phone):
+        dao = UserDAO()
+        result = dao.registerUser(name, username, email, password, phone)
+        print(result)
+
         return jsonify(Register="User with name: '" + name + "',username: '"+username+"', email: '"+email+"', password: '"+password+"' and phone: '"+phone+"' has been registered")
 
     def login(self,username, password):

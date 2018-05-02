@@ -28,3 +28,8 @@ class UserDAO:
         cursor = self.conn.cursor()
         cursor.execute("SELECT userid, name, email, username, phone FROM Users where username=%s",(user,))
         return cursor.fetchone()
+
+    def registerUser(self, name, username, email, password, phone):
+        cursor = self.conn.cursor()
+        cursor.execute("insert into users values(DEFAULT, %s, %s, %s, %s, %s, '0');",(name, username, email, password, phone,))
+        self.conn.commit()
