@@ -29,9 +29,9 @@ def chats():
         return handler.getAllChats()
 
 
-@app.route('/ChatApp/chats/create/<name>')
-def createChat(name):
-    return ChatHandler().createChat(name)
+@app.route('/ChatApp/chats/create/<admin>/<name>')
+def createChat(admin, name):
+    return ChatHandler().createChat(admin, name)
 
 
 @app.route('/ChatApp/chats/remove/<name>')
@@ -39,9 +39,9 @@ def removeChat(name):
     return ChatHandler().removeChat(name)
 
 
-@app.route('/ChatApp/chats/<chat>/messages/post/<message>')
-def postMessage(chat, message):
-    return ChatHandler().postMessage(chat, message)
+@app.route('/ChatApp/chats/<chat>/messages/<user>/post/<message>')
+def postMessage(chat, user, message):
+    return ChatHandler().postMessage(chat, user, message)
 
 
 @app.route('/ChatApp/chats/<chat>/members/add/<id>')
@@ -74,14 +74,14 @@ def viewMembers(chatId):
     return MemberHandler().getMembersByChat(chatId)
 
 
-@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/like/<like>')
-def likeMessage(chatId, messageId, like):
-    return ChatHandler().likeMessage(chatId, messageId, like)
+@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/<user>/like/<like>')
+def likeMessage(chatId, user, messageId, like):
+    return ChatHandler().likeMessage(chatId,user, messageId, like)
 
 
-@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/reply/<message>')
-def replyToMessage(chatId, messageId, message):
-    return ChatHandler().replyToMessage(chatId, messageId, message)
+@app.route('/ChatApp/chats/messages/reply/<replying>/<message>')
+def replyToMessage(message, replying):
+    return ChatHandler().replyToMessage(message, replying)
 
 # Users
 @app.route('/ChatApp/users')
