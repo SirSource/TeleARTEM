@@ -21,6 +21,13 @@ class ChatHandler:
         result['name'] = row[2]
         return result
 
+    def mapToDictionaryNames(self, row):
+        result = {}
+        result['chatId'] = row[0]
+        result['name'] = row[2]
+        return result
+
+
     def mapToAdminDictionary(self, row):
         result = {}
         result['chatId'] = row[0]
@@ -31,8 +38,26 @@ class ChatHandler:
     def getAllChats(self):
         dao = ChatDAO()
         result = dao.getAllChats()
-        mapped_result = []
-        return self.mapToDictionary(r)
+        mappedResult = []
+        for r in result:
+            mappedResult.append(self.mapToDictionary(r))
+        return jsonify(Chats=mappedResult)
+
+    def getAllChatsNames(self, id):
+        dao = ChatDAO()
+        result = dao.getAllChatsNames(id)
+        mappedResult = []
+        for r in result:
+            mappedResult.append(self.mapToDictionaryNames(r))
+        return mappedResult
+
+    def getAllChatsMember(self, id):
+        dao = ChatDAO()
+        result = dao.getAllChatsMember(id)
+        mappedResult = []
+        for r in result:
+            mappedResult.append(self.mapToDictionaryNames(r))
+        return mappedResult
 
     def getChatById(self, id):
         dao = ChatDAO()
@@ -58,28 +83,24 @@ class ChatHandler:
             mappedResult.append(self.mapToAdminDictionary(r))
         return jsonify(Admin=mappedResult)
 
-    def createChat(self, admin, name):
-        dao = ChatDAO()
-        dao.createChat(admin, name)
+    def createChat(self, name):
         return jsonify(Created="Chat with name " + name + " has been created")
 
     def addContactToChat(self, chatId, contact):
+        ChatDAO().addContactToChat(chatId, contact)
         return jsonify(ContactAddedToChat="User with id "+contact + " has been added to chat " + chatId)
 
     def removeContactFromChat(self, chatId, contact):
-        dao = ChatDAO()
-        dao.removeUser(chatId, contact)
         return jsonify(ContactAddedToChat="User " + contact + " has been removed from chat " + chatId)
 
     def removeChat(self, name):
-        dao = ChatDAO()
-        dao.removeChat(name)
-        return jsonify(Removed="Chat with id '" + name + "' has been removed")
+        result = self.getChatById(name)
+        return jsonify(Removed="Chat with name '" + result['name'] + "' has been removed")
 
     def postMessage(self, chat, user, message):
         dao = ChatDAO()
         dao.postMessage(chat, user, message)
-        return jsonify(Posted="Message: '" + message + "' has been posted to chat: " + chat)
+        return jsonify(Empty="Message posted")
 
     def getMessages(self, chatId):
         dao = MessagesDAO()
@@ -91,17 +112,11 @@ class ChatHandler:
             return jsonify(Messages=mappedResult)
         return jsonify(Empty="No messages in this chat yet")
 
-    def likeMessage(self, chatId, user, messageId, like):
-        dao = ChatDAO()
-        dao.likeMessage(messageId, like, user)
-        if int(like):
-            return jsonify(Like="Message with id: " + messageId + " in chat: " + chatId + " has been liked")
-        return jsonify(Like="Message with id: " + messageId + " in chat: " + chatId + " has been disliked")
+    def likeMessage(self, userId, messageId, like):
+        ChatDAO().likeMessage(userId, messageId, like);
 
-    def replyToMessage(self, message, replying):
-        dao = ChatDAO()
-        dao.reply(message, replying)
+    def replyToMessage(self, chatId, messageId, message):
         return jsonify(
-            Reply="Message '" + message + " has posted a reply to message: " + replying)
+            Reply="Message '" + message + "' in chat: " + chatId + " has been posted as a reply to message: " + messageId)
     #REPLY QUERY FOR WHEN ITS READY: WITH result AS ( insert into messages values(DEFAULT, 2, 1, 'This is test for reply', '2018-12-18') returning messageid )
     # insert into replies values(DEFAULT, (select * from result), 4); select * from replies;

@@ -6,12 +6,12 @@ class MessagesDAO:
         conn_string = "host='localhost' dbname='chatapp' user='postgres' password='postgres'"
         self.conn = psycopg2.connect(conn_string)
 
-    def messagesChatReady(self):
+    def messagesChatReady(self, chat):
         cursor = self.conn.cursor()
         cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, "
                        "(select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike "
-                       "from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID "
-                       "group by messageID, Users.username order by timeStamp;")
+                       "from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID where chat=%s"
+                       "group by messageID, Users.username order by timeStamp;", (chat))
 
         result = []
         for row in cursor:

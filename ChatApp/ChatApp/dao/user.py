@@ -15,7 +15,7 @@ class UserDAO:
 
     def getUserById(self, id):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT userid, name, email, username, phone FROM Users where userid=%s", (id))
+        cursor.execute("SELECT userid, name, email, username, phone FROM Users where userid=%s", (str(id)))
 
         return cursor.fetchone()
 
@@ -26,10 +26,10 @@ class UserDAO:
 
     def searchByUsername(self, user):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT userid, name, email, username, phone FROM Users where username=%s",(user,))
+        cursor.execute("SELECT userid, name, email, username, phone FROM Users where username=%s",(str(user),))
         return cursor.fetchone()
-
-    def registerUser(self, name, username, email, password, phone):
+    def verify(self, username, password):
         cursor = self.conn.cursor()
-        cursor.execute("insert into users values(DEFAULT, %s, %s, %s, %s, %s, '0');",(name, username, email, password, phone,))
-        self.conn.commit()
+        cursor.execute("select userid from users where email=%s and password=%s;",
+                       (username, password))
+        return cursor.fetchone()

@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, redirect, jsonify
 from handler.chats import ChatHandler
 from handler.users import UserHandler
 from handler.contacts import ContactHandler
@@ -9,15 +9,11 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
-
+global id
+id = 0
 @app.route('/ChatApp/')
 def home():
     return "Hello World"
-
-@app.route('/ChatApp/login/<username>/<password>')
-def login(username, password):
-    return UserHandler().login(username, password)
-
 
 # Chats
 @app.route('/ChatApp/chats')
@@ -28,10 +24,13 @@ def chats():
         handler = ChatHandler()
         return handler.getAllChats()
 
+@app.route('/ChatApp/allChats')
+def allChats():
+    return ChatHandler().getAllChats()
 
-@app.route('/ChatApp/chats/create/<admin>/<name>')
-def createChat(admin, name):
-    return ChatHandler().createChat(admin, name)
+@app.route('/ChatApp/chats/create/<name>')
+def createChat(name):
+    return ChatHandler().createChat(name)
 
 
 @app.route('/ChatApp/chats/remove/<name>')
@@ -39,10 +38,16 @@ def removeChat(name):
     return ChatHandler().removeChat(name)
 
 
-@app.route('/ChatApp/chats/<chat>/messages/<user>/post/<message>')
+@app.route('/ChatApp/chats/<chat>/messages/post/<user>/<message>', methods=['POST'])
 def postMessage(chat, user, message):
     return ChatHandler().postMessage(chat, user, message)
 
+@app.route('/join', methods=['POST'])
+def joinChat():
+    if not id:
+        return login()
+    ChatHandler().addContactToChat(request.form['chats'], str(id))
+    return dashboard()
 
 @app.route('/ChatApp/chats/<chat>/members/add/<id>')
 def addContactToChat(chat, id):
@@ -74,14 +79,15 @@ def viewMembers(chatId):
     return MemberHandler().getMembersByChat(chatId)
 
 
-@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/<user>/like/<like>')
-def likeMessage(chatId, user, messageId, like):
-    return ChatHandler().likeMessage(chatId,user, messageId, like)
+@app.route('/ChatApp/chats/<userId>/messages/<messageId>/like/<like>', methods=['POST'])
+def likeMessage(userId, messageId, like):
+    ChatHandler().likeMessage(userId, messageId, like)
+    return "LIKED"
 
 
-@app.route('/ChatApp/chats/messages/reply/<replying>/<message>')
-def replyToMessage(message, replying):
-    return ChatHandler().replyToMessage(message, replying)
+@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/reply/<message>')
+def replyToMessage(chatId, messageId, message):
+    return ChatHandler().replyToMessage(chatId, messageId, message)
 
 # Users
 @app.route('/ChatApp/users')
@@ -151,9 +157,9 @@ def getMembersByChatId(chatId):
     return MemberHandler().getMembersByChatId(chatId)
 
 
-@app.route('/ChatApp/messagesAllChat')
-def messagesDB():
-        return MessagesHandler().messagesChatReady()
+@app.route('/ChatApp/messagesAllChat/<chatID>')
+def messagesDB(chatID):
+        return MessagesHandler().messagesChatReady(chatID)
 # Messages
 @app.route('/ChatApp/messages')
 def messages():
@@ -207,6 +213,49 @@ def getRepliesByDate(date):
 @app.route('/ChatApp/messages/date/<date>')
 def getMessagesPerDate(date):
     return MessagesHandler().getMessagesPerDate(date)
+
+@app.route('/ChatApp/id', methods=['GET'])
+def id():
+    print("ID INSIDE ID: ", id)
+    print("TYPOE OF ID: ", type(id))
+    userId = {'id':id}
+    return jsonify(ID = userId)
+
+@app.route('/login', methods=['POST'])
+def verify():
+    global id
+    id = UserHandler().login(request.form['email'], request.form['password'])
+    if not id:
+        return login()
+    else:
+        return dashboard()
+
+@app.route('/chat/<path:id>')
+def chat(id):
+        return render_template("index.html")
+
+@app.route('/dashboard')
+def dashboard():
+    myChats = ChatHandler().getAllChatsMember(str(id))
+    chats = ChatHandler().getAllChatsNames(str(id))
+    print(myChats)
+    print(chats)
+    if not id:
+        return login()
+    else:
+        print("ID: ", id)
+        return render_template('dashboard.html', chats=chats, myChats=myChats)
+
+@app.route('/open', methods=['POST'])
+def open():
+    return render_template('index.html')
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
 
 if __name__ == '__main__':
     app.run()

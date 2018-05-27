@@ -3,8 +3,8 @@ from dao.messages import MessagesDAO
 
 
 class MessagesHandler:
-    def messagesChatReady(self):
-        data = MessagesDAO().messagesChatReady()
+    def messagesChatReady(self, chat):
+        data = MessagesDAO().messagesChatReady(chat)
         result = []
         for i in data:
             result.append(self.messagesChatReadyToDictionary(i))

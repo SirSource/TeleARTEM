@@ -18,15 +18,6 @@ class ContactDAO:
 
     def getContact(self, id):
         cursor = self.conn.cursor()
-        cursor.execute("select userid from users  where userid = %s",
+        cursor.execute("select username from users  where userid = %s",
                        (id))
         return cursor.fetchone()
-    def addToContacts(self, user, contact):
-        cursor = self.conn.cursor()
-        cursor.execute("insert into contacts values(DEFAULT, %s, %s);", (user, contact,))
-        self.conn.commit()
-
-    def removeUser(self, user, contact):
-        cursor = self.conn.cursor()
-        cursor.execute("delete from contacts where holder = %s and friend = %s;", (user, contact,))
-        self.conn.commit()
