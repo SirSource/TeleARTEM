@@ -28,11 +28,16 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
                     var url = "http://127.0.0.1:5000/ChatApp/chats/"+$routeParams.cid+"/messages/post/"+userId+"/"+message;
                     $http.post(url);
                     });
-            $route.reload();
+
+            thisCtrl.newText = "";
         };
 
         this.likeDetails = function (like, pid) {
             $location.url('/likes/' + like + '/' + pid);
+        }
+
+        this.reply = function (mid, msg) {
+            $location.url('/reply/' + mid+'/' + $routeParams.cid + '/'+ msg);
         }
 
         this.likeMessage = function (like, messageId) {

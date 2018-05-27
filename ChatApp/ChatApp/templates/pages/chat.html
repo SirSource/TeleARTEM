@@ -38,6 +38,7 @@
                             <a class="waves-effect  orange btn-small" ng-click="chatCtrl.likeDetails(1,m.messageId)"><span ng-bind= "m.like"> </span></a>
                             <a class="waves-effect btn-small waves-effect waves-light blue" ng-click="chatCtrl.likeMessage(0,m.messageId)"><i class="material-icons">thumb_down</i></a>
                             <a class="waves-effect  orange btn-small" ng-click="chatCtrl.likeDetails(0,m.messageId)"><span ng-bind="m.dislike"> </span></a>
+                            <a class="waves-effect  black btn-small" ng-click="chatCtrl.reply(m.messageId, m.message)"><i class="material-icons">reply</i></span></a>
                         </div>
                     </div>
                 </div>

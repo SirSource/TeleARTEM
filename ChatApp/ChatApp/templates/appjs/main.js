@@ -11,6 +11,10 @@
             templateUrl: 'pages/likes.html',
             controller: 'LikeController',
             controllerAs : 'likeCtrl'
+        }).when('/reply/:mid/:cid/:msg', {
+            templateUrl: 'pages/reply.html',
+            controller: 'ReplyController',
+            controllerAs : 'replyCtrl'
         }).when('/login', {
             templateUrl: 'pages/login.html',
             controller: 'LoginController',

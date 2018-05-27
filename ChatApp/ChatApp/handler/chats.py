@@ -99,8 +99,8 @@ class ChatHandler:
 
     def postMessage(self, chat, user, message):
         dao = ChatDAO()
-        dao.postMessage(chat, user, message)
-        return jsonify(Empty="Message posted")
+        mid = dao.postMessage(chat, user, message)
+        return mid
 
     def getMessages(self, chatId):
         dao = MessagesDAO()
@@ -115,8 +115,9 @@ class ChatHandler:
     def likeMessage(self, userId, messageId, like):
         ChatDAO().likeMessage(userId, messageId, like);
 
-    def replyToMessage(self, chatId, messageId, message):
-        return jsonify(
-            Reply="Message '" + message + "' in chat: " + chatId + " has been posted as a reply to message: " + messageId)
+    def replyToMessage(self, message, replying):
+        dao = ChatDAO()
+        dao.reply(message, replying)
+        return jsonify(Reply="Message '" + message + " has posted a reply to message: " + replying)
     #REPLY QUERY FOR WHEN ITS READY: WITH result AS ( insert into messages values(DEFAULT, 2, 1, 'This is test for reply', '2018-12-18') returning messageid )
     # insert into replies values(DEFAULT, (select * from result), 4); select * from replies;

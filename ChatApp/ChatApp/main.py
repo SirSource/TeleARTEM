@@ -40,7 +40,10 @@ def removeChat(name):
 
 @app.route('/ChatApp/chats/<chat>/messages/post/<user>/<message>', methods=['POST'])
 def postMessage(chat, user, message):
-    return ChatHandler().postMessage(chat, user, message)
+    mid = ChatHandler().postMessage(chat, user, message)
+    messageID = {'mid':mid}
+    print("MID: ",messageID)
+    return jsonify(MID = messageID)
 
 @app.route('/join', methods=['POST'])
 def joinChat():
@@ -84,10 +87,9 @@ def likeMessage(userId, messageId, like):
     ChatHandler().likeMessage(userId, messageId, like)
     return "LIKED"
 
-
-@app.route('/ChatApp/chats/<chatId>/messages/<messageId>/reply/<message>')
-def replyToMessage(chatId, messageId, message):
-    return ChatHandler().replyToMessage(chatId, messageId, message)
+@app.route('/ChatApp/chats/messages/reply/<replying>/<message>', methods=['POST'])
+def replyToMessage(message, replying):
+    return ChatHandler().replyToMessage(message, replying)
 
 # Users
 @app.route('/ChatApp/users')
