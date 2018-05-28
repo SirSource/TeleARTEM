@@ -87,9 +87,11 @@ def likeMessage(userId, messageId, like):
     ChatHandler().likeMessage(userId, messageId, like)
     return "LIKED"
 
+
 @app.route('/ChatApp/chats/messages/reply/<replying>/<message>', methods=['POST'])
 def replyToMessage(message, replying):
     return ChatHandler().replyToMessage(message, replying)
+
 
 # Users
 @app.route('/ChatApp/users')
@@ -269,6 +271,31 @@ def dashboard():
 @app.route('/open', methods=['POST'])
 def open():
     return render_template('index.html')
+
+@app.route('/login/<user>/<password>')
+def loginREST(user, password):
+    global id
+    id = UserHandler().login(user, password)
+    if not id:
+        return login()
+    else:
+        return dashboard()
+
+@app.route('/ChatApp/chats/<chat>/messages/post/<user>/<message>')
+def postMessageREST(chat, user, message):
+    mid = ChatHandler().postMessage(chat, user, message)
+    messageID = {'mid':mid}
+    print("MID: ",messageID)
+    return jsonify(MID = messageID)
+
+@app.route('/ChatApp/chats/<userId>/messages/<messageId>/like/<like>')
+def likeMessageREST(userId, messageId, like):
+    ChatHandler().likeMessage(userId, messageId, like)
+    return "LIKED"
+
+@app.route('/ChatApp/chats/messages/reply/<replying>/<message>')
+def replyToMessageREST(message, replying):
+    return ChatHandler().replyToMessage(message, replying)
 
 
 @app.route('/login')
