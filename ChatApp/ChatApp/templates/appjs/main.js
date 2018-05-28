@@ -11,6 +11,10 @@
             templateUrl: 'pages/likes.html',
             controller: 'LikeController',
             controllerAs : 'likeCtrl'
+        }).when('/hashtag/:chat/:word', {
+            templateUrl: 'pages/hashtags.html',
+            controller: 'HashController',
+            controllerAs : 'hashCtrl'
         }).when('/reply/:mid/:cid/:msg', {
             templateUrl: 'pages/reply.html',
             controller: 'ReplyController',

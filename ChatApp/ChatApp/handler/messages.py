@@ -109,6 +109,14 @@ class MessagesHandler:
             mappedResult.append(self.mapHashtagsToDictionary(r))
         return jsonify(Users=mappedResult)
 
+    def getHashtagAggregatesWord(self, chat, word):
+        dao = MessagesDAO()
+        result = dao.getHashtagAggregatesSearch(chat, word)
+        mappedResult = []
+        for r in result:
+            mappedResult.append(self.messagesChatReadyToDictionary(r))
+        return jsonify(Messages=mappedResult)
+
     def getRepliesPerDate(self, date):
         dao = MessagesDAO()
         result = dao.getRepliesPerDate(date)

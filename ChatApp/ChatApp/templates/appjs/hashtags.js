@@ -1,16 +1,17 @@
-angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope', '$location', '$routeParams', function($http, $log, $scope, $location, $routeParams) {
+angular.module('AppChat').controller('HashController', ['$http', '$log', '$scope', '$location', '$routeParams', function($http, $log, $scope, $location, $routeParams) {
         var thisCtrl = this;
         this.messageList = [];
         this.reactions = [];
         this.counter  = 2;
         this.newText = "";
-        this.newSearch = "";
 
          this.loadMessages = function(){
-            var chatId = $routeParams.cid
-            var url = "http://127.0.0.1:5000/ChatApp/messagesAllChat/" + chatId;
+            var chatId = $routeParams.chat
+            var word = $routeParams.word
+            var url = "http://127.0.0.1:5000/ChatApp/messages/hashtagsSearch/" + chatId+"/"+word;
                 $http.get(url).then(function (response) {
                     var messages = response;
+                    console.log(messages);
                     size = parseInt(messages.data.Messages.length)
                     console.log(size)
                     for (var i=0; i<size; i++) {
@@ -32,10 +33,6 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
 
             thisCtrl.newText = "";
         };
-
-        this.hashtag = function () {
-            $location.url('/hashtag/' + $routeParams.cid + '/' + this.newSearch);
-        }
 
         this.likeDetails = function (like, pid) {
             $location.url('/likes/' + like + '/' + pid);

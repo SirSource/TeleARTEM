@@ -17,10 +17,20 @@ class MessagesDAO:
         for row in cursor:
             result.append(row)
         return result
+
     def getHashtagAggregates(self, date):
         cursor = self.conn.cursor()
         key = '%#%'
         cursor.execute("SELECT word, count(*) AS ct FROM   messages, unnest(string_to_array(message, ' ')) word WHERE word LIKE %s AND timestamp>%s GROUP  BY word ORDER BY ct DESC LIMIT 3;", (key, date))
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getHashtagAggregatesSearch(self, chat, word):
+        cursor = self.conn.cursor()
+        key = '%#'+word+'%'
+        cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, (select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID where M.message LIKE %s AND chat = %s group by messageID, Users.username order by timeStamp;" ,(key,str(chat)))
         result = []
         for row in cursor:
             result.append(row)
