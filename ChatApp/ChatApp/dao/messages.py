@@ -18,10 +18,10 @@ class MessagesDAO:
             result.append(row)
         return result
 
-    def getHashtagAggregates(self, date):
+    def getHashtagAggregates(self):
         cursor = self.conn.cursor()
         key = '%#%'
-        cursor.execute("SELECT word, count(*) AS ct FROM   messages, unnest(string_to_array(message, ' ')) word WHERE word LIKE %s AND timestamp>%s GROUP  BY word ORDER BY ct DESC LIMIT 3;", (key, date))
+        cursor.execute("SELECT word, count(*) AS ct FROM   messages, unnest(string_to_array(message, ' ')) word WHERE word LIKE %s AND timestamp>current_date - interval '7 days' GROUP  BY word ORDER BY ct LIMIT 10;", (key,))
         result = []
         for row in cursor:
             result.append(row)

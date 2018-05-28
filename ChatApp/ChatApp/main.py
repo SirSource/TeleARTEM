@@ -204,9 +204,9 @@ def likes(like):
 def getLikesByUserId(messageId):
     return LikesHandler().getUserReactionsByMessageId(messageId)
 
-@app.route('/ChatApp/messages/hashtags/<date>')
-def getHashtagAggregatesByDate(date):
-    return MessagesHandler().getHashtagAggregates(date)
+@app.route('/ChatApp/messages/hashtags')
+def getHashtagAggregatesByDate():
+    return MessagesHandler().getHashtagAggregates()
 
 @app.route('/ChatApp/messages/hashtagsSearch/<chat>/<word>')
 def getHashtagAggregatesBySearch(chat, word):

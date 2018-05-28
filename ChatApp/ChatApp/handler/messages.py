@@ -22,9 +22,9 @@ class MessagesHandler:
         return result
 
     def mapHashtagsToDictionary(self, row):
-        result = {}
-        result['word'] = row[0]
-        result['count'] = row[1]
+        result = []
+        result.append(row[0])
+        result.append(row[1])
         return result
 
     def mapLikesOfMessage(self, row):
@@ -101,12 +101,13 @@ class MessagesHandler:
             mappedResult.append(self.mapUsersToDictionary(r))
         return jsonify(Users=mappedResult)
 
-    def getHashtagAggregates(self, date):
+    def getHashtagAggregates(self):
         dao = MessagesDAO()
-        result = dao.getHashtagAggregates(date)
+        result = dao.getHashtagAggregates()
         mappedResult = []
         for r in result:
             mappedResult.append(self.mapHashtagsToDictionary(r))
+        print(mappedResult)
         return jsonify(Users=mappedResult)
 
     def getHashtagAggregatesWord(self, chat, word):
