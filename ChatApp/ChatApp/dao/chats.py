@@ -52,6 +52,7 @@ class ChatDAO:
 
     def postMessage(self, chat, user, message):
         cursor = self.conn.cursor()
+        print(message)
         cursor.execute("insert into messages values(DEFAULT, %s, %s, %s, current_timestamp) returning messageid;",
                        (user, chat, message,))
         self.conn.commit()

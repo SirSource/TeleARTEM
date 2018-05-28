@@ -11,7 +11,7 @@ class MessagesDAO:
         cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, "
                        "(select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike "
                        "from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID where chat=%s"
-                       "group by messageID, Users.username order by timeStamp;", (chat))
+                       "group by messageID, Users.username order by timestamp ASC, messageid ASC;", (chat))
 
         result = []
         for row in cursor:
@@ -30,7 +30,7 @@ class MessagesDAO:
     def getHashtagAggregatesSearch(self, chat, word):
         cursor = self.conn.cursor()
         key = '%#'+word+'%'
-        cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, (select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID where M.message LIKE %s AND chat = %s group by messageID, Users.username order by timeStamp;" ,(key,str(chat)))
+        cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, (select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID where M.message LIKE %s AND chat = %s group by messageID, Users.username order by timestamp DESC, messageid DESC;" ,(key,str(chat)))
         result = []
         for row in cursor:
             result.append(row)
