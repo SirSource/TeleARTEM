@@ -28,7 +28,7 @@ class ContactHandler:
         else:
             for r in result:
                 mappedResult.append(self.mapToDictionary(r))
-            return mappedResult
+            return jsonify(Contacts=mappedResult)
 
     def addContactToUser(self, user, contact):
         dao = ContactDAO()

@@ -22,9 +22,9 @@ class MessagesHandler:
         return result
 
     def mapHashtagsToDictionary(self, row):
-        result = []
-        result.append(row[0])
-        result.append(row[1])
+        result = {}
+        result['id'] = row[0]
+        result['count'] = row[1]
         return result
 
     def mapLikesOfMessage(self, row):
@@ -51,6 +51,11 @@ class MessagesHandler:
         result['chat'] = row[2]
         result['message'] = row[3]
         result['timestamp'] = row[4]
+        return result
+    def mapToDictionaryMessagesDate(self, row):
+        result = {}
+        result['date'] = row[0]
+        result['count'] = row[1]
         return result
 
     def getAllMessages(self):
@@ -107,8 +112,7 @@ class MessagesHandler:
         mappedResult = []
         for r in result:
             mappedResult.append(self.mapHashtagsToDictionary(r))
-        print(mappedResult)
-        return jsonify(Users=mappedResult)
+        return jsonify(Hashtags=mappedResult)
 
     def getHashtagAggregatesWord(self, chat, word):
         dao = MessagesDAO()
@@ -126,13 +130,45 @@ class MessagesHandler:
             mappedResult.append(self.mapRepliesToDictionary(r))
         return jsonify(Users=mappedResult)
 
-    def getMessagesPerDate(self, date):
+    def getMessagesPerDate(self):
         dao = MessagesDAO()
-        result = dao.getMessagesPerDate(date)
+        result = dao.getMessagesPerDate()
         mappedResult = []
         if not result:
             return jsonify(Error="THIS DAY NO MESSAGE WAS POSTED"), 404
         else:
             for r in result:
-                mappedResult.append(self.mapToDictionary(r))
-            return jsonify(Messages=mappedResult)
+                mappedResult.append(self.mapToDictionaryMessagesDate(r))
+            return jsonify(MsgDate=mappedResult)
+
+    def getRepliesPerDate(self):
+        dao = MessagesDAO()
+        result = dao.getRepliesPerDate()
+        mappedResult = []
+        if not result:
+            return jsonify(Error="THIS DAY NO MESSAGE WAS POSTED"), 404
+        else:
+            for r in result:
+                mappedResult.append(self.mapToDictionaryMessagesDate(r))
+            return jsonify(RepliesDate=mappedResult)
+    def getLikesPerDate(self):
+        dao = MessagesDAO()
+        result = dao.getLikesPerDate()
+        mappedResult = []
+        if not result:
+            return jsonify(Error="THIS DAY NO MESSAGE WAS POSTED"), 404
+        else:
+            for r in result:
+                mappedResult.append(self.mapToDictionaryMessagesDate(r))
+            return jsonify(LikesDate=mappedResult)
+
+    def getDislikesPerDate(self):
+        dao = MessagesDAO()
+        result = dao.getDislikesPerDate()
+        mappedResult = []
+        if not result:
+            return jsonify(Error="THIS DAY NO MESSAGE WAS POSTED"), 404
+        else:
+            for r in result:
+                mappedResult.append(self.mapToDictionaryMessagesDate(r))
+            return jsonify(DislikesDate=mappedResult)
