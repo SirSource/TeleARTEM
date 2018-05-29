@@ -7,7 +7,7 @@ from handler.messages import MessagesHandler
 from handler.likes import LikesHandler
 from flask_cors import CORS, cross_origin
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 CORS(app)
 global id
 id = 0

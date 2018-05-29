@@ -2,7 +2,7 @@ import psycopg2
 
 class UserDAO:
     def __init__(self):
-        conn_string = "host='localhost' dbname='chatapp' user='postgres' password='postgres'"
+        conn_string = "host='chatapp.crxgakfnkwhg.us-east-1.rds.amazonaws.com' dbname='chatapp' user='masterUsername' password='ICOM5026'"
         self.conn = psycopg2.connect(conn_string)
 
     def getAllUsers(self):

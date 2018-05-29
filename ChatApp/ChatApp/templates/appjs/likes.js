@@ -13,7 +13,7 @@ angular.module('AppChat').controller('LikeController', ['$http', '$log', '$scope
             var messageId = $routeParams.mid;
             // Now create the url with the route to talk with the rest API
             console.log(messageId);
-            var reqURL = "http://127.0.0.1:5000/ChatApp/likes/users/message/" + messageId;
+            var reqURL = "http://chatapp.us-east-1.elasticbeanstalk.com:5000/ChatApp/likes/users/message/" + messageId;
             console.log(reqURL)
             // Now issue the http request to the rest API
             $http.get(reqURL).then(

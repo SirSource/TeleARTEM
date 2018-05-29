@@ -8,7 +8,7 @@ angular.module('AppChat').controller('HashController', ['$http', '$log', '$scope
          this.loadMessages = function(){
             var chatId = $routeParams.chat
             var word = $routeParams.word
-            var url = "http://127.0.0.1:5000/ChatApp/messages/hashtagsSearch/" + chatId+"/"+word;
+            var url = "http://chatapp.us-east-1.elasticbeanstalk.com:5000/ChatApp/messages/hashtagsSearch/" + chatId+"/"+word;
                 $http.get(url).then(function (response) {
                     var messages = response;
                     console.log(messages);
@@ -25,9 +25,9 @@ angular.module('AppChat').controller('HashController', ['$http', '$log', '$scope
         this.postMsg = function(){
             var message = thisCtrl.newText;
             var userId = "";
-            $http.get("http://127.0.0.1:5000/ChatApp/id").then(function (response) {
+            $http.get("http://chatapp.us-east-1.elasticbeanstalk.com:5000/ChatApp/id").then(function (response) {
                     userId = response.data.ID.id;
-                    var url = "http://127.0.0.1:5000/ChatApp/chats/"+$routeParams.chat+"/messages/post/"+userId+"/"+message;
+                    var url = "http://chatapp.us-east-1.elasticbeanstalk.com:5000/ChatApp/chats/"+$routeParams.chat+"/messages/post/"+userId+"/"+message;
                     $http.post(url);
                     });
 
@@ -44,9 +44,9 @@ angular.module('AppChat').controller('HashController', ['$http', '$log', '$scope
 
         this.likeMessage = function (like, messageId) {
             var userId = "";
-            $http.get("http://127.0.0.1:5000/ChatApp/id").then(function (response) {
+            $http.get("http://chatapp.us-east-1.elasticbeanstalk.com:5000/ChatApp/id").then(function (response) {
                     userId = response.data.ID.id;
-                    var url = "http://127.0.0.1:5000/ChatApp/chats/"+userId+"/messages/"+messageId+"/like/"+like;
+                    var url = "http://chatapp.us-east-1.elasticbeanstalk.com:5000/ChatApp/chats/"+userId+"/messages/"+messageId+"/like/"+like;
                     $http.post(url);
                     });
         }
