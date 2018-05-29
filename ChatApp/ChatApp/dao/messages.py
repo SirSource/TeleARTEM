@@ -6,21 +6,40 @@ class MessagesDAO:
         conn_string = "host='localhost' dbname='chatapp' user='postgres' password='postgres'"
         self.conn = psycopg2.connect(conn_string)
 
-    def messagesChatReady(self):
+    def messagesChatReady(self, chat):
         cursor = self.conn.cursor()
         cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, "
                        "(select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike "
-                       "from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID "
-                       "group by messageID, Users.username order by timeStamp;")
+                       "from Users inner join Messages as M on Users.userID=M.poster where chat=%s"
+                       "group by messageID, Users.username order by timestamp ASC, messageid ASC;", (chat))
 
         result = []
         for row in cursor:
             result.append(row)
         return result
-    def getHashtagAggregates(self, date):
+
+    def getHashtagAggregates(self):
         cursor = self.conn.cursor()
         key = '%#%'
-        cursor.execute("SELECT word, count(*) AS ct FROM   messages, unnest(string_to_array(message, ' ')) word WHERE word LIKE %s AND timestamp>%s GROUP  BY word ORDER BY ct DESC LIMIT 3;", (key, date))
+        cursor.execute("SELECT word, count(*) AS ct FROM   messages, unnest(string_to_array(message, ' ')) word WHERE word LIKE %s AND timestamp>current_date - interval '7 days' GROUP  BY word ORDER BY ct DESC LIMIT 10 ;", (key,))
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getTopUsers(self):
+        cursor = self.conn.cursor()
+        key = '%#%'
+        cursor.execute("select username, count(*) from users inner join messages on messages.poster=users.userid where timestamp>current_date - interval'7 days' group by username order by count desc limit 10;")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getHashtagAggregatesSearch(self, chat, word):
+        cursor = self.conn.cursor()
+        key = '%#'+word+'%'
+        cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, (select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike from Users inner join Messages as M on Users.userID=M.poster where M.message LIKE %s AND chat = %s group by messageID, Users.username order by timestamp DESC, messageid DESC;" ,(key,str(chat)))
         result = []
         for row in cursor:
             result.append(row)
@@ -73,9 +92,35 @@ class MessagesDAO:
             result.append(row)
         return result
 
-    def getMessagesPerDate(self, date):
+    def getMessagesPerDate(self):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT * from messages where timestamp = %s;", (date,))
+        cursor.execute(
+            "SELECT timestamp, count(*) AS ct FROM   messages WHERE timestamp>current_date - interval '7 days' GROUP  BY timestamp ORDER BY ct DESC LIMIT 7;")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getRepliesPerDate(self):
+        cursor = self.conn.cursor()
+        cursor.execute(
+            "select timestamp, count(*) from replies inner join messages on replies.replyingto = messages.messageid WHERE timestamp>current_date - interval '7 days' GROUP  BY timestamp;")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getLikesPerDate(self):
+        cursor = self.conn.cursor()
+        cursor.execute("select likes.timestamp, count(*) from likes inner join messages on likes.message = messages.messageid WHERE likevalue=1 AND likes.timestamp>current_date - interval '7 days' GROUP  BY likes.timestamp;")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getDislikesPerDate(self):
+        cursor = self.conn.cursor()
+        cursor.execute("select likes.timestamp, count(*) from likes inner join messages on likes.message = messages.messageid WHERE likevalue=0 AND likes.timestamp>current_date - interval '7 days' GROUP  BY likes.timestamp;")
         result = []
         for row in cursor:
             result.append(row)

@@ -28,20 +28,22 @@ class ContactHandler:
         else:
             for r in result:
                 mappedResult.append(self.mapToDictionary(r))
-            return mappedResult
+            return jsonify(Contacts=mappedResult)
 
     def addContactToUser(self, user, contact):
         dao = ContactDAO()
+        contact = dao.getContact(contact)
+        user = dao.getContact(user)
         if not contact:
             return jsonify(Error="THIS ID DOES NOT EXIST"), 404
         else:
-            dao.addToContacts(user[0], contact[0])
             return jsonify(Contacts="User: "+contact[0]+" has been added to user "+user[0]+" contact list")
 
     def removeContactFromUser(self, user, contact):
         dao = ContactDAO()
+        contact = dao.getContact(contact)
+        user = dao.getContact(user)
         if not contact:
             return jsonify(Error="THIS ID DOES NOT EXIST"), 404
         else:
-            dao.removeUser(user, contact)
             return jsonify(Contacts="User: " + contact[0] + " has been removed from user " + user[0] + " contact list")

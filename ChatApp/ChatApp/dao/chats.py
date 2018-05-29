@@ -11,43 +11,54 @@ class ChatDAO:
         for row in cursor:
             result.append(row)
         return result
+    def getAllChatsNames(self, id):
+        cursor = self.conn.cursor()
+        cursor.execute("select * from chats where chatId not in (select chat as chatId from members where userid="+id+")")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
+    def getAllChatsMember(self, id):
+        cursor = self.conn.cursor()
+        print(id)
+        cursor.execute("select * from chats where chatId in (select chat as chatId from members where userid="+id+");")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
     def getAdminByChatId(self, id):
         cursor = self.conn.cursor()
-        cursor.execute("select chatid, username, email from chats inner join users on chats.admin=users.userid where chatid = %s;", id)
+        cursor.execute("select chatid, username, email from chats inner join users on chats.admin=users.userid where chatid = "+id+";")
         result = []
         for row in cursor:
             result.append(row)
         return result
     def getChatById(self, id):
         cursor = self.conn.cursor()
-        cursor.execute("select * from chats where chatid=%s;", id)
+        cursor.execute("select * from chats where chatid=%s;", str(id))
         return cursor.fetchone()
-    def createChat(self, admin, name):
+
+    def addContactToChat(self, chat, user):
         cursor = self.conn.cursor()
-        cursor.execute("insert into chats values(DEFAULT, %s, %s);",(admin, name,))
-        self.conn.commit()
-    def removeUser(self, chatId, contact):
-        cursor = self.conn.cursor()
-        cursor.execute("delete from members where chat =%s and userid=%s;",(chatId, contact,))
+        cursor.execute("insert into members values(DEFAULT, %s, %s);", (chat, user))
         self.conn.commit()
 
-    def removeChat(self, name):
+    def likeMessage(self, userId, messageId, like):
         cursor = self.conn.cursor()
-        cursor.execute("delete from chats where name =%s;",(name,))
+        cursor.execute("insert into likes values(DEFAULT, %s, %s, %s, current_timestamp);", (like, messageId, userId))
         self.conn.commit()
 
     def postMessage(self, chat, user, message):
         cursor = self.conn.cursor()
-        cursor.execute("insert into messages values(DEFAULT, %s, %s, %s, current_timestamp);",(user, chat, message,))
+        print(message)
+        cursor.execute("insert into messages values(DEFAULT, %s, %s, %s, current_timestamp) returning messageid;",
+                       (user, chat, message,))
         self.conn.commit()
-
-    def likeMessage(self, id, like, user):
-        cursor = self.conn.cursor()
-        cursor.execute("insert into likes values(DEFAULT, %s, %s, %s, current_timestamp);",(like, id, user,))
-        self.conn.commit()
+        return cursor.fetchone()[0]
 
     def reply(self, message, replying):
         cursor = self.conn.cursor()
-        cursor.execute("insert into replies values(DEFAULT, %s, %s);",(message, replying,))
+        cursor.execute("insert into replies values(DEFAULT, %s, %s);", (message, replying,))
         self.conn.commit()
-
