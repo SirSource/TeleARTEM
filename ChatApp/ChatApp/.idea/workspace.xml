@@ -14,86 +14,90 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="hashtags.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/appjs/hashtags.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="65" column="45" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="messages.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dao/messages.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/user.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="138" selection-start-line="4" selection-start-column="138" selection-end-line="4" selection-end-column="138" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="chats.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/chats.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="138" selection-start-line="3" selection-start-column="138" selection-end-line="3" selection-end-column="138" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="likes.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/likes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="138" selection-start-line="3" selection-start-column="138" selection-end-line="3" selection-end-column="138" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="members.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/members.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="138" selection-start-line="3" selection-start-column="138" selection-end-line="3" selection-end-column="138" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contacts.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/contacts.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="138" selection-start-line="3" selection-start-column="138" selection-end-line="3" selection-end-column="138" />
+            <state relative-caret-position="450">
+              <caret line="65" column="39" lean-forward="true" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
+        <entry file="file://$PROJECT_DIR$/static/dashboard-master/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="active.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/active.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+            <state relative-caret-position="435">
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="chat.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/appjs/chat.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="54" column="76" lean-forward="true" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dislikes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/dislikes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hash.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/hash.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="likes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/likes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="messages.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/messages.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="replies.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/replies.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -191,17 +195,27 @@
         <option value="$PROJECT_DIR$/handler/messages.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/templates/appjs/chat.js" />
-        <option value="$PROJECT_DIR$/templates/appjs/hashtags.js" />
-        <option value="$PROJECT_DIR$/templates/appjs/likes.js" />
-        <option value="$PROJECT_DIR$/templates/appjs/reply.js" />
-        <option value="$PROJECT_DIR$/templates/dashboard.html" />
         <option value="$PROJECT_DIR$/dao/contacts.py" />
         <option value="$PROJECT_DIR$/dao/chats.py" />
         <option value="$PROJECT_DIR$/dao/likes.py" />
         <option value="$PROJECT_DIR$/dao/members.py" />
         <option value="$PROJECT_DIR$/dao/messages.py" />
         <option value="$PROJECT_DIR$/dao/user.py" />
+        <option value="$PROJECT_DIR$/templates/dashboard.html" />
+        <option value="$PROJECT_DIR$/templates/appjs/chat.js" />
+        <option value="$PROJECT_DIR$/templates/appjs/hashtags.js" />
+        <option value="$PROJECT_DIR$/templates/appjs/likes.js" />
+        <option value="$PROJECT_DIR$/templates/appjs/reply.js" />
+        <option value="$PROJECT_DIR$/static/appjs/chat.js" />
+        <option value="$PROJECT_DIR$/static/appjs/hashtags.js" />
+        <option value="$PROJECT_DIR$/static/appjs/likes.js" />
+        <option value="$PROJECT_DIR$/static/appjs/reply.js" />
+        <option value="$PROJECT_DIR$/static/dashboard-master/appjs/active.js" />
+        <option value="$PROJECT_DIR$/static/dashboard-master/appjs/dislikes.js" />
+        <option value="$PROJECT_DIR$/static/dashboard-master/appjs/hash.js" />
+        <option value="$PROJECT_DIR$/static/dashboard-master/appjs/likes.js" />
+        <option value="$PROJECT_DIR$/static/dashboard-master/appjs/messages.js" />
+        <option value="$PROJECT_DIR$/static/dashboard-master/appjs/replies.js" />
       </list>
     </option>
   </component>
@@ -235,12 +249,31 @@
             <path>
               <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard-master" type="462c0819:PsiDirectoryNode" />
+              <item name="appjs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChatApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChatApp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="appjs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -511,43 +544,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/chats.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/flask/app.py" />
-    <entry file="file://$PROJECT_DIR$/templates/AppChat-master/js/angular.js" />
-    <entry file="file://$PROJECT_DIR$/config/dbconfig.py" />
-    <entry file="file://$PROJECT_DIR$/AppChat-master/pages/chatbad.html" />
-    <entry file="file://$PROJECT_DIR$/AppChat-master/appjs/dislikes.js" />
-    <entry file="file://$PROJECT_DIR$/templates/AppChat-master/appjs/login.js" />
-    <entry file="file://$PROJECT_DIR$/templates/AppChat-master/pages/chat.html" />
-    <entry file="file://$PROJECT_DIR$/templates/AppChat-master/pages/login.html" />
-    <entry file="file://$PROJECT_DIR$/templates/AppChat-master/pages/likes.html" />
-    <entry file="file://$PROJECT_DIR$/templates/AppChat-master/appjs/likes.js" />
-    <entry file="file://$USER_HOME$/PycharmProjects/edvo/main.py" />
     <entry file="file://$PROJECT_DIR$/templates/AppChat-master/appjs/chat.js" />
     <entry file="file://$PROJECT_DIR$/templates/AppChat-master/appjs/main.js" />
     <entry file="file://$PROJECT_DIR$/templates/AppChat-master/pages/dashboard.html" />
     <entry file="file://$PROJECT_DIR$/templates/AppChat-master/index.html" />
-    <entry file="file://$PROJECT_DIR$/templates/pages/login.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pages/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-376" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/likes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -560,13 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pages/chat.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="120" selection-start-line="9" selection-start-column="120" selection-end-line="9" selection-end-column="120" />
         </state>
       </provider>
     </entry>
@@ -624,82 +617,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4200">
-          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/appjs/chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="81" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/appjs/hashtags.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="81" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/appjs/likes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="15" column="76" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/appjs/login.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/appjs/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/appjs/reply.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="81" selection-start-line="15" selection-start-column="81" selection-end-line="15" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/js/angular.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/js/angular-route.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-848" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" column="45" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dao/__init__.py">
@@ -743,7 +666,169 @@
     <entry file="file://$PROJECT_DIR$/dao/messages.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pages/login.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pages/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pages/chat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="9" column="120" selection-start-line="9" selection-start-column="120" selection-end-line="9" selection-end-column="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/appjs/hashtags.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="76" selection-start-line="48" selection-start-column="76" selection-end-line="48" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/appjs/likes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/appjs/login.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/appjs/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/appjs/reply.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="85" lean-forward="true" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/appjs/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="54" column="76" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/appjs/reply.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="85" lean-forward="true" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/appjs/main.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/appjs/login.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/appjs/likes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="15" column="71" lean-forward="true" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/appjs/hashtags.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="65" column="39" lean-forward="true" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard-master/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/dislikes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/hash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/likes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/messages.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/replies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dashboard-master/appjs/active.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/appjs/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="54" column="76" lean-forward="true" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
         </state>
       </provider>
     </entry>

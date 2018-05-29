@@ -1,0 +1,32 @@
+<div ng-cloak style="align-content: center">
+   <!--<div  id="chat-list" style="height:300px;overflow:auto">-->
+    <div>
+         <a class="waves-effect btn-small waves-effect waves-light green" onclick="location.reload()"><i class="material-icons">refresh</i></a>
+        <a class="waves-effect btn-small waves-effect waves-light red" onclick="window.history.back()"><i class="material-icons">arrow_back</i></a>
+        <!-- Here come the messages in the chat, each one presented in card -->
+        <div ng-repeat="m in hashCtrl.messageList">
+            <!-- This card prodives space for the message and Like/dislike buttons -->
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <!-- Card Title is the person who write the message -->
+                            <span class="card-title">{{m.poster}}</span>
+                            <!-- Here comes the message text -->
+                            <p>
+                                {{m.message}}
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a class="waves-effect btn-small waves-effect waves-light blue" ng-click="hashCtrl.likeMessage(1,m.messageId)"><i class="material-icons">thumb_up</i></a>
+                            <a class="waves-effect  orange btn-small" ng-click="hashCtrl.likeDetails(1,m.messageId)"><span ng-bind= "m.like"> </span></a>
+                            <a class="waves-effect btn-small waves-effect waves-light blue" ng-click="hashCtrl.likeMessage(0,m.messageId)"><i class="material-icons">thumb_down</i></a>
+                            <a class="waves-effect  orange btn-small" ng-click="hashCtrl.likeDetails(0,m.messageId)"><span ng-bind="m.dislike"> </span></a>
+                            <a class="waves-effect  black btn-small" ng-click="hashCtrl.reply(m.messageId, m.message)"><i class="material-icons">reply</i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

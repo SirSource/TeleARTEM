@@ -29,43 +29,14 @@
         <!--Additional Info Box-->
        <div class="row mt-3 bg-white p-4 ">
                 <div class="container">
-                <h1 style="text-align: center">Home</h1>
+                <h1 style="text-align: center">Dashboard</h1>
                 <div class="col-md-6" style="background-color: lightgray; height: 200px; border: 5px solid white;">                
-                <h6 style="align-content: center; text-align: center; margin-top: 2%">Chats NOT in</h6>
-                
-      
-         
-            <form action="/join" method="POST">
-                <h4>Join a chat</h4>
-                <select name="chats" style="width: 100px">
-                {% for i in chats %}
-                <option value="{{ i['chatId'] }}">{{ i['name'] }}</option>
-
-                {% endfor %}
-                </select>
-                <br><br>
-                <input type="submit">
-            </form>
+                <h6 style="align-content: center; text-align: center; margin-top: 2%">Chats</h6>
+                </div>
+                </div>
                 
         </div>
-            <div class="col-md-6" style="background-color: lightgray; height: 200px; border: 5px solid white;">
-                <h6 style="align-content: center; text-align: center; margin-top: 2%">Chats Im In</h6>
-
-
-
-            <div>
-                <h4>Join a chat</h4>
-                {% for i in myChats %}
-                <a href="static/index.html#!/chat/{{ i['chatId'] }}">{{ i['name'] }}</a><br>
-
-                {% endfor %}
-            </div>
-
-        </div>
-                    <div class="col-md-6" style="border: 5px solid white;">
-                <a href="static/dashboard-master/index.html" style="align-content: center; text-align: center; margin-top: 2%" >Stats</a>
-
-        </div>
+    </div>
    
 </body>
 
