@@ -10,7 +10,7 @@ class MessagesDAO:
         cursor = self.conn.cursor()
         cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, "
                        "(select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike "
-                       "from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID where chat=%s"
+                       "from Users inner join Messages as M on Users.userID=M.poster where chat=%s"
                        "group by messageID, Users.username order by timestamp ASC, messageid ASC;", (chat))
 
         result = []
@@ -27,10 +27,19 @@ class MessagesDAO:
             result.append(row)
         return result
 
+    def getTopUsers(self):
+        cursor = self.conn.cursor()
+        key = '%#%'
+        cursor.execute("select username, count(*) from users inner join messages on messages.poster=users.userid where timestamp>current_date - interval'7 days' group by username order by count desc limit 10;")
+        result = []
+        for row in cursor:
+            result.append(row)
+        return result
+
     def getHashtagAggregatesSearch(self, chat, word):
         cursor = self.conn.cursor()
         key = '%#'+word+'%'
-        cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, (select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike from Users inner join Messages as M on Users.userID=M.poster inner join Likes on M.poster=Likes.userID where M.message LIKE %s AND chat = %s group by messageID, Users.username order by timestamp DESC, messageid DESC;" ,(key,str(chat)))
+        cursor.execute("select messageID, M.message, Users.username, M.timeStamp, (select count(likeValue) from Likes where likeValue = 1 AND message=M.messageID) as like, (select count(likeValue) from Likes where likeValue = 0 AND message=M.messageID) as dislike from Users inner join Messages as M on Users.userID=M.poster where M.message LIKE %s AND chat = %s group by messageID, Users.username order by timestamp DESC, messageid DESC;" ,(key,str(chat)))
         result = []
         for row in cursor:
             result.append(row)

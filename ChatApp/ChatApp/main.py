@@ -24,6 +24,10 @@ def chats():
         handler = ChatHandler()
         return handler.getAllChats()
 
+@app.route('/ChatApp/memberof/<userid>')
+def isMember(userid):
+    return ChatHandler().getAllChatsMemberJSON(userid)
+
 @app.route('/ChatApp/allChats')
 def allChats():
     return ChatHandler().getAllChats()
@@ -212,6 +216,10 @@ def getLikesByUserId(messageId):
 def getHashtagAggregatesByDate():
     return MessagesHandler().getHashtagAggregates()
 
+@app.route('/ChatApp/messages/topusers')
+def getTopUsers():
+    return MessagesHandler().getTopUsers()
+
 @app.route('/ChatApp/messages/hashtagsSearch/<chat>/<word>')
 def getHashtagAggregatesBySearch(chat, word):
     return MessagesHandler().getHashtagAggregatesWord(chat, word)
@@ -301,6 +309,15 @@ def replyToMessageREST(message, replying):
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/register')
+def registerTEMPLATE():
+    return render_template('register.html')
+
+@app.route('/registerUser', methods=['POST'])
+def registerREST():
+    UserHandler().registerUser(request.form['name'], request.form['email'], request.form['username'], request.form['password'], request.form['phone'])
+    return login()
 
 
 

@@ -27,7 +27,7 @@ angular.module('AppChat').controller('HashController', ['$http', '$log', '$scope
             var userId = "";
             $http.get("http://127.0.0.1:5000/ChatApp/id").then(function (response) {
                     userId = response.data.ID.id;
-                    var url = "http://127.0.0.1:5000/ChatApp/chats/"+$routeParams.cid+"/messages/post/"+userId+"/"+message;
+                    var url = "http://127.0.0.1:5000/ChatApp/chats/"+$routeParams.chat+"/messages/post/"+userId+"/"+message;
                     $http.post(url);
                     });
 
@@ -39,7 +39,7 @@ angular.module('AppChat').controller('HashController', ['$http', '$log', '$scope
         }
 
         this.reply = function (mid, msg) {
-            $location.url('/reply/' + mid+'/' + $routeParams.cid + '/'+ msg);
+            $location.url('/reply/' + mid+'/' + $routeParams.chat+ '/'+ msg);
         }
 
         this.likeMessage = function (like, messageId) {

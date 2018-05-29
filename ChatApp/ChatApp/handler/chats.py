@@ -59,6 +59,15 @@ class ChatHandler:
             mappedResult.append(self.mapToDictionaryNames(r))
         return mappedResult
 
+    def getAllChatsMemberJSON(self, id):
+        dao = ChatDAO()
+        result = dao.getAllChatsMember(id)
+        mappedResult = []
+        for r in result:
+            mappedResult.append(self.mapToDictionaryNames(r))
+        print(mappedResult)
+        return jsonify(Chats=mappedResult)
+
     def getChatById(self, id):
         dao = ChatDAO()
         result = dao.getChatById(id)

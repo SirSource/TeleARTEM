@@ -13,7 +13,7 @@ class ChatDAO:
         return result
     def getAllChatsNames(self, id):
         cursor = self.conn.cursor()
-        cursor.execute("select * from chats where chatId not in (select chat as chatId from members where userid=%s);", str(id))
+        cursor.execute("select * from chats where chatId not in (select chat as chatId from members where userid="+id+")")
         result = []
         for row in cursor:
             result.append(row)
@@ -22,7 +22,7 @@ class ChatDAO:
     def getAllChatsMember(self, id):
         cursor = self.conn.cursor()
         print(id)
-        cursor.execute("select * from chats where chatId in (select chat as chatId from members where userid=%s)", str(id))
+        cursor.execute("select * from chats where chatId in (select chat as chatId from members where userid="+id+");")
         result = []
         for row in cursor:
             result.append(row)
@@ -30,7 +30,7 @@ class ChatDAO:
 
     def getAdminByChatId(self, id):
         cursor = self.conn.cursor()
-        cursor.execute("select chatid, username, email from chats inner join users on chats.admin=users.userid where chatid = %s", (str(id),))
+        cursor.execute("select chatid, username, email from chats inner join users on chats.admin=users.userid where chatid = "+id+";")
         result = []
         for row in cursor:
             result.append(row)

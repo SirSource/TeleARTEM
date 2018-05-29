@@ -46,13 +46,14 @@ class UserHandler:
         else:
             return jsonify(User=result)
 
-    def registerUser(self, name, username, email, password, phone):
+    def registerUser(self,name, email, username, password, phone):
+        dao = UserDAO()
+        dao.register(name, email, username, password, phone)
         return jsonify(Register="User with name: '" + name + "',username: '"+username+"', email: '"+email+"', password: '"+password+"' and phone: '"+phone+"' has been registered")
 
     def login(self,username, password):
         dao = UserDAO()
         result = dao.verify(username, password)
-        print("HO: ",result)
         if not result:
             return 0
         else:

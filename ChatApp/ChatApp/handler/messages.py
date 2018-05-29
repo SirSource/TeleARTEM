@@ -6,6 +6,7 @@ class MessagesHandler:
     def messagesChatReady(self, chat):
         data = MessagesDAO().messagesChatReady(chat)
         result = []
+        print(data)
         for i in data:
             result.append(self.messagesChatReadyToDictionary(i))
 
@@ -113,6 +114,14 @@ class MessagesHandler:
         for r in result:
             mappedResult.append(self.mapHashtagsToDictionary(r))
         return jsonify(Hashtags=mappedResult)
+
+    def getTopUsers(self):
+        dao = MessagesDAO()
+        result = dao.getTopUsers()
+        mappedResult = []
+        for r in result:
+            mappedResult.append(self.mapHashtagsToDictionary(r))
+        return jsonify(TopUsers=mappedResult)
 
     def getHashtagAggregatesWord(self, chat, word):
         dao = MessagesDAO()

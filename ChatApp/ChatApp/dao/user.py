@@ -33,3 +33,9 @@ class UserDAO:
         cursor.execute("select userid from users where email=%s and password=%s;",
                        (username, password))
         return cursor.fetchone()
+
+    def register(self, name, email, username, password, phone):
+        cursor = self.conn.cursor()
+        cursor.execute("insert into users values(DEFAULT, %s, %s, %s, %s, %s, 0);",
+                       (name, email, username, password, phone))
+        self.conn.commit()
